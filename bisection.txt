@@ -1,0 +1,18 @@
+clc
+clear all
+f=@(x) x^2-4*x-2;
+a=input('enter the lower bound ');
+b=input('enter the upper bound ');
+e=input('enter the error ');
+n=ceil((log(b-a)-log(e))/log(2));
+display(n);
+for i=1:n
+c=(b+a)/2;
+if f(a)*f(c)<0
+b=c;
+else
+a=c;
+end
+
+end
+display(c);

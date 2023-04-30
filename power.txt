@@ -1,0 +1,16 @@
+clc
+clear all;
+A = [1,1,0,0 ; 1,2,0,1; 0,0,3,3; 0,1,2,3];
+x0 = [1;1;0;1];
+n=100;
+e=10^-3;
+for i=1:n
+    y=A*x0;
+    k=max(abs(y));
+    x1=y/k;
+    if(abs(x1-x0)<e)
+        break;
+    end
+    x0=x1;
+end
+v1

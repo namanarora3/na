@@ -1,0 +1,15 @@
+clc
+clear all
+f=@(x) 1/(x*log(x));
+a=input('enter lower limit')
+b=input('enter upper limit')
+n=input('enter no 0f intervals')
+h=(b-a)/n
+sum=0
+for i=1:n-1
+x(i)=a+i*h;
+sum=sum+f(x(i));
+end
+
+trape=(h/2)*(f(a)+f(b)+2*sum);
+display(trape)

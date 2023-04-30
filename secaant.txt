@@ -1,0 +1,17 @@
+clc 
+clear all
+f=@(x) x.^3-2*x-5;
+x0=input('enter x0');
+x1=input('enter x1');
+n=input('enter maximum no. of iterations');
+e=input('eneter error');
+for i=1:n
+    x2=x1-(x1-x0)*f(x0)/f(x1)-f(x0);
+    if(abs(x2-x1)<e)
+        break;
+    end
+     x0=x1;
+    x1=x2;
+   
+end
+display(x2);
