@@ -1,0 +1,59 @@
+#router config
+R1#conf t
+R1(config)#int s1/0
+R1(config-if)#ip add 100.1.1.2 255.255.255.0
+R1(config-if)#no shut
+R1(config-if)#int s1/1
+R1(config-if)#ip address 20.1.1.1 255.255.255.0
+R1(config-if)#no shut
+R1(config-if)#ex
+
+#pc config
+PC1> ip 192.168.1.100 255.255.255.0 192.168.1.1
+
+#rip config
+R1(config)#router rip
+R1(config-router)#version 2
+R1(config-router)#network 20.1.1.0
+R1(config-router)#network 100.1.1.0
+
+#dhcp config router
+R1#config t
+R1(config)#ip dhcp pool xyz
+R1(dhcp-config)#network 192.168.10.0 /24
+R1(dhcp-config)#dns-server 1.2.3.4
+R1(dhcp-config)#lease ?
+R1(dhcp-config)#lease 0 3
+R1(dhcp-config)#no ip bootp server
+R1(config)#int fa0/0
+R1(config-if)#ip add 192.168.10.1 255.255.255.0
+R1(config-if)#no shut
+R1(config-if)#ex
+
+#dhcp config pc
+PC1> ip dhcp
+PC1> show ip 
+
+#clockrate
+R1(config-if)#clock rate 64000 
+
+#configure static ip route
+R1(config)#ip route 172.16.0.0 255.255.0.0 10.0.0.2
+R1(config)#exit
+R1#show ip route
+
+#ospf Syntax
+Router(config)#router ospf <process id 1-65535>
+Router(config-router)network <network address> <wild card mask>
+area <0-4294967295>
+
+#ospf
+Router1(config)#router ospf 200
+Router1(config-router)#network 10.0.0.0 0.255.255.255
+area 0
+Router1(config-router)#network 192.168.1.0 0.0.0.255
+area 0.0.0.0
+Router1(config-router)#exit
+
+
+
